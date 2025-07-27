@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babylion122's Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a365d;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated wave background */
+        .wave-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(135deg, #2b77e6 0%, #1a365d 50%, #2c5282 100%);
+        }
+
+        .wave {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                rgba(74, 144, 226, 0.3) 0%, 
+                rgba(135, 206, 235, 0.2) 25%, 
+                rgba(176, 224, 230, 0.1) 50%, 
+                rgba(74, 144, 226, 0.2) 75%, 
+                rgba(53, 122, 189, 0.3) 100%);
+            border-radius: 40%;
+            animation: wave-animation 15s ease-in-out infinite;
+        }
+
+        .wave:nth-child(1) {
+            top: -50%;
+            left: -50%;
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+
+        .wave:nth-child(2) {
+            top: -30%;
+            right: -50%;
+            animation-delay: -3s;
+            animation-duration: 18s;
+            animation-direction: reverse;
+        }
+
+        .wave:nth-child(3) {
+            bottom: -50%;
+            left: -30%;
+            animation-delay: -6s;
+            animation-duration: 20s;
+        }
+
+        .wave:nth-child(4) {
+            bottom: -30%;
+            right: -30%;
+            animation-delay: -9s;
+            animation-duration: 16s;
+            animation-direction: reverse;
+        }
+
+        @keyframes wave-animation {
+            0%, 100% {
+                transform: rotate(0deg) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: rotate(90deg) scale(1.1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: rotate(180deg) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: rotate(270deg) scale(1.05);
+                opacity: 0.6;
+            }
+        }
+
+        /* Floating bubble waves */
+        .bubble-waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+            pointer-events: none;
+        }
+
+        /* Different bubble sizes and positions */
+        .bubble:nth-child(1) { width: 8px; height: 8px; left: 10%; animation: bubbleFloat1 8s ease-in-out infinite; }
+        .bubble:nth-child(2) { width: 12px; height: 12px; left: 15%; animation: bubbleFloat2 10s ease-in-out infinite; animation-delay: -1s; }
+        .bubble:nth-child(3) { width: 6px; height: 6px; left: 20%; animation: bubbleFloat3 12s ease-in-out infinite; animation-delay: -2s; }
+        .bubble:nth-child(4) { width: 10px; height: 10px; left: 25%; animation: bubbleFloat1 9s ease-in-out infinite; animation-delay: -3s; }
+        .bubble:nth-child(5) { width: 14px; height: 14px; left: 30%; animation: bubbleFloat2 11s ease-in-out infinite; animation-delay: -4s; }
+        .bubble:nth-child(6) { width: 7px; height: 7px; left: 35%; animation: bubbleFloat3 13s ease-in-out infinite; animation-delay: -5s; }
+        .bubble:nth-child(7) { width: 9px; height: 9px; left: 40%; animation: bubbleFloat1 7s ease-in-out infinite; animation-delay: -6s; }
+        .bubble:nth-child(8) { width: 11px; height: 11px; left: 45%; animation: bubbleFloat2 14s ease-in-out infinite; animation-delay: -7s; }
+        .bubble:nth-child(9) { width: 8px; height: 8px; left: 50%; animation: bubbleFloat3 10s ease-in-out infinite; animation-delay: -8s; }
+        .bubble:nth-child(10) { width: 13px; height: 13px; left: 55%; animation: bubbleFloat1 12s ease-in-out infinite; animation-delay: -9s; }
+        .bubble:nth-child(11) { width: 6px; height: 6px; left: 60%; animation: bubbleFloat2 8s ease-in-out infinite; animation-delay: -10s; }
+        .bubble:nth-child(12) { width: 10px; height: 10px; left: 65%; animation: bubbleFloat3 11s ease-in-out infinite; animation-delay: -11s; }
+        .bubble:nth-child(13) { width: 15px; height: 15px; left: 70%; animation: bubbleFloat1 9s ease-in-out infinite; animation-delay: -12s; }
+        .bubble:nth-child(14) { width: 7px; height: 7px; left: 75%; animation: bubbleFloat2 13s ease-in-out infinite; animation-delay: -13s; }
+        .bubble:nth-child(15) { width: 9px; height: 9px; left: 80%; animation: bubbleFloat3 10s ease-in-out infinite; animation-delay: -14s; }
+        .bubble:nth-child(16) { width: 12px; height: 12px; left: 85%; animation: bubbleFloat1 14s ease-in-out infinite; animation-delay: -15s; }
+        .bubble:nth-child(17) { width: 8px; height: 8px; left: 90%; animation: bubbleFloat2 7s ease-in-out infinite; animation-delay: -16s; }
+        .bubble:nth-child(18) { width: 11px; height: 11px; left: 95%; animation: bubbleFloat3 12s ease-in-out infinite; animation-delay: -17s; }
+
+        /* More bubbles for density */
+        .bubble:nth-child(19) { width: 5px; height: 5px; left: 12%; animation: bubbleFloat1 15s ease-in-out infinite; animation-delay: -18s; }
+        .bubble:nth-child(20) { width: 16px; height: 16px; left: 18%; animation: bubbleFloat2 6s ease-in-out infinite; animation-delay: -19s; }
+        .bubble:nth-child(21) { width: 7px; height: 7px; left: 22%; animation: bubbleFloat3 11s ease-in-out infinite; animation-delay: -20s; }
+        .bubble:nth-child(22) { width: 9px; height: 9px; left: 28%; animation: bubbleFloat1 13s ease-in-out infinite; animation-delay: -21s; }
+        .bubble:nth-child(23) { width: 13px; height: 13px; left: 33%; animation: bubbleFloat2 8s ease-in-out infinite; animation-delay: -22s; }
+        .bubble:nth-child(24) { width: 6px; height: 6px; left: 38%; animation: bubbleFloat3 14s ease-in-out infinite; animation-delay: -23s; }
+        .bubble:nth-child(25) { width: 10px; height: 10px; left: 42%; animation: bubbleFloat1 10s ease-in-out infinite; animation-delay: -24s; }
+        .bubble:nth-child(26) { width: 14px; height: 14px; left: 48%; animation: bubbleFloat2 12s ease-in-out infinite; animation-delay: -25s; }
+        .bubble:nth-child(27) { width: 8px; height: 8px; left: 52%; animation: bubbleFloat3 9s ease-in-out infinite; animation-delay: -26s; }
+        .bubble:nth-child(28) { width: 11px; height: 11px; left: 58%; animation: bubbleFloat1 15s ease-in-out infinite; animation-delay: -27s; }
+        .bubble:nth-child(29) { width: 7px; height: 7px; left: 63%; animation: bubbleFloat2 7s ease-in-out infinite; animation-delay: -28s; }
+        .bubble:nth-child(30) { width: 12px; height: 12px; left: 68%; animation: bubbleFloat3 13s ease-in-out infinite; animation-delay: -29s; }
+
+        @keyframes bubbleFloat1 {
+            0% { 
+                transform: translateY(100vh) translateX(0px) scale(0.8);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(50vh) translateX(20px) scale(1);
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% { 
+                transform: translateY(-10vh) translateX(-10px) scale(0.6);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleFloat2 {
+            0% { 
+                transform: translateY(100vh) translateX(0px) scale(0.9);
+                opacity: 0;
+            }
+            15% {
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(50vh) translateX(-30px) scale(1.2);
+                opacity: 0.9;
+            }
+            85% {
+                opacity: 0.5;
+            }
+            100% { 
+                transform: translateY(-10vh) translateX(15px) scale(0.7);
+                opacity: 0;
+            }
+        }
+
+        @keyframes bubbleFloat3 {
+            0% { 
+                transform: translateY(100vh) translateX(0px) scale(1.1);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(50vh) translateX(40px) scale(0.9);
+                opacity: 0.7;
+            }
+            80% {
+                opacity: 0.6;
+            }
+            100% { 
+                transform: translateY(-10vh) translateX(-25px) scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        .desktop {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .welcome-text {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 1.5rem 3rem;
+            box-shadow: 
+                0 8px 32px rgba(0, 100, 200, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px) saturate(1.4);
+            -webkit-backdrop-filter: blur(10px) saturate(1.4);
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+        }
+
+        .welcome-text h1 {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .welcome-text p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
+            opacity: 0.9;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        .desktop-button {
+            width: 140px;
+            height: 120px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 8px 32px rgba(0, 100, 200, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px) saturate(1.2);
+            -webkit-backdrop-filter: blur(5px) saturate(1.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .desktop-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        .desktop-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 12px 40px rgba(0, 100, 200, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .desktop-button:active {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .button-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .button-text {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .audio-player {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            box-shadow: 
+                0 8px 32px rgba(0, 100, 200, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px) saturate(1.4);
+            -webkit-backdrop-filter: blur(12px) saturate(1.4);
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audio-player::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+
+        .player-info {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .track-title {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+            box-shadow: 
+                0 4px 16px rgba(0, 100, 200, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 6px 20px rgba(0, 100, 200, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .control-btn:active {
+            transform: translateY(0);
+        }
+
+        .progress-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), rgba(135, 206, 235, 0.9));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        .time-display {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .volume-btn {
+            background: rgba(100, 200, 100, 0.2);
+            border-color: rgba(100, 200, 100, 0.3);
+        }
+
+        .volume-btn:hover {
+            background: rgba(100, 200, 100, 0.25);
+        }
+
+        .window {
+            position: absolute;
+            width: 500px;
+            min-height: 400px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            box-shadow: 
+                0 20px 60px rgba(0, 100, 200, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px) saturate(1.5);
+            -webkit-backdrop-filter: blur(15px) saturate(1.5);
+            display: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .window::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+        }
+
+        .window.active {
+            display: block;
+        }
+
+        .window-header {
+            height: 40px;
+            background: rgba(74, 144, 226, 0.3);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            cursor: move;
+            user-select: none;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .window-title {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .window-control {
+            width: 18px;
+            height: 18px;
+            border-radius: 9px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: bold;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        .minimize { 
+            background: rgba(255, 193, 7, 0.8); 
+            box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+        }
+        .maximize { 
+            background: rgba(40, 167, 69, 0.8); 
+            box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+        }
+        .close { 
+            background: rgba(220, 53, 69, 0.8); 
+            box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+        }
+
+        .window-control:hover {
+            opacity: 0.8;
+            transform: scale(1.1);
+        }
+
+        .window-content {
+            padding: 2rem;
+            height: calc(100% - 40px);
+            overflow-y: auto;
+        }
+
+        .window-content h2 {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .window-content p {
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .link-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.9);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .link-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 100, 200, 0.2);
+            border-color: rgba(255, 255, 255, 0.25);
+        }
+
+        .portfolio-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            border-left: 4px solid rgba(135, 206, 235, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .portfolio-item h3 {
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .spec-list {
+            list-style: none;
+        }
+
+        .spec-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .spec-list li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .spec-value {
+            color: rgba(255, 255, 255, 0.8);
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .button-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                max-width: 400px;
+            }
+
+            .desktop-button {
+                width: 100px;
+                height: 90px;
+            }
+
+            .button-icon {
+                font-size: 2rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .button-text {
+                font-size: 0.8rem;
+            }
+
+            .welcome-text {
+                padding: 1rem 2rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .welcome-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .welcome-text p {
+                font-size: 0.9rem;
+            }
+
+            .audio-player {
+                padding: 0.8rem 1rem;
+                max-width: 400px;
+            }
+
+            .track-title {
+                font-size: 0.8rem;
+            }
+
+            .control-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .window {
+                width: 90vw;
+                left: 5vw !important;
+                top: 5vh !important;
+                min-height: 300px;
+            }
+
+            .window-content {
+                padding: 1.5rem;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+
+            .desktop {
+                gap: 1.5rem;
+                padding: 1rem;
+            }
+
+            .window-content p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated wave background -->
+    <div class="wave-container">
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="bubble-waves">
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+            <div class="bubble"></div>
+        </div>
+    </div>
+
+    <div class="desktop">
+        <div class="welcome-text">
+            <h1>Welcome to Babylion122's Website!</h1>
+            <p>Click on the icons below to explore</p>
+        </div>
+
+        <div class="button-grid">
+            <div class="desktop-button" onclick="openWindow('about')">
+                <div class="button-icon"><img src="About%20Me.jpg" alt="About Me" style="width: 40px; height: 40px; border-radius: 12px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></div>
+                <div class="button-text">About Me</div>
+            </div>
+
+            <div class="desktop-button" onclick="openWindow('links')">
+                <div class="button-icon"><img src="Links.png" alt="Links" style="width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></div>
+                <div class="button-text">Social Links</div>
+            </div>
+
+            <div class="desktop-button" onclick="openWindow('portfolio')">
+                <div class="button-icon"><img src="Portfolio.png" alt="Portfolio" style="width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></div>
+                <div class="button-text">Portfolio</div>
+            </div>
+
+            <div class="desktop-button" onclick="openWindow('software')">
+                <div class="button-icon"><img src="Software.png" alt="Software" style="width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></div>
+                <div class="button-text">Software</div>
+            </div>
+
+            <div class="desktop-button" onclick="openWindow('hardware')">
+                <div class="button-icon"><img src="Hardware.png" alt="Hardware" style="width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></div>
+                <div class="button-text">Hardware</div>
+            </div>
+
+            <div class="desktop-button" onclick="openWindow('contact')">
+                <div class="button-icon"><img src="Messages.png" alt="Contact" style="width: 40px; height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></div>
+                <div class="button-text">Contact</div>
+            </div>
+        </div>
+
+        <!-- Audio Player -->
+        <div class="audio-player">
+            <div class="player-info">
+                <div class="track-title"><img src="Music.png" alt="Music" style="width: 20px; height: 20px; margin-right: 8px; vertical-align: middle; filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));"> Now Playing: HOME - Resonance</div>
+            </div>
+            <div class="player-controls">
+                 <button class="control-btn" id="playPauseBtn">▶️</button>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="time-display">
+                        <span id="currentTime">0:00</span> / <span id="totalTime">0:00</span>
+                    </div>
+                </div>
+                <button class="control-btn volume-btn">🔊</button>
+            </div>
+            <audio id="audioPlayer" preload="metadata">
+                <source src="HOME - Resonance.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
+    <!-- Windows -->
+    <div class="window" id="about-window">
+        <div class="window-header">
+            <div class="window-title">About Me</div>
+            <div class="window-controls">
+                <div class="window-control minimize">_</div>
+                <div class="window-control maximize">□</div>
+                <div class="window-control close" onclick="closeWindow('about')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>Hey there! 👋</h2>
+            <p>I'm Babylion122, a content creator passionate about Fortnite Mobile, and mobile gaming as a whole. I love creating new content, teaching others how to do such, and connecting with new and awesome people in the content creation space (and outside too!).</p>
+            <p>When I'm not creating content, you can find me building PC's, or grinding PlayStation Platinum trophies. I love Hyperflip music and K-Pop (thanks to my partner for that one, I love you Miya &lt;3), and I really like Fortnite, as I've basically been playing it 24/7 since its release.</p>
+            <p>Thanks for checking out my website! If you want to contact me you can do so through the other buttons here, and by all means please do if you're looking to collaborate, or need help with your content. AND (Please), Use Code Babylion122 in the Fortnite Item Shop!</p>
+        </div>
+    </div>
+
+    <div class="window" id="links-window">
+        <div class="window-header">
+            <div class="window-title">Social Links</div>
+            <div class="window-controls">
+                <div class="window-control minimize">_</div>
+                <div class="window-control maximize">□</div>
+                <div class="window-control close" onclick="closeWindow('links')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>Find Me Online 🌐</h2>
+            <div class="links-grid">
+                <a href="https://youtube.com/@babylion122" class="link-item">
+                    🎥 YouTube
+                </a>
+                <a href="https://instagram.com/baby.lion122" class="link-item">
+                    📷 Instagram
+                </a>
+                <a href="https://tiktok.com/@babyliononmobile" class="link-item">
+                    🎵 TikTok
+                </a>
+                <a href="https://twitter.com/Babylion122" class="link-item">
+                    🐦 Twitter
+                </a>
+                <a href="https://twitch.tv/babylion122yt" class="link-item">
+                    🎮 Twitch
+                </a>
+                <a href="https://discord.gg/fnm" class="link-item">
+                    💬 Discord
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="window" id="portfolio-window">
+        <div class="window-header">
+            <div class="window-title">Portfolio</div>
+            <div class="window-controls">
+                <div class="window-control minimize">_</div>
+                <div class="window-control maximize">□</div>
+                <div class="window-control close" onclick="closeWindow('portfolio')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>My Work 🎨</h2>
+            <div class="portfolio-item">
+                <h3>YT Jobs Profile</h3>
+                <p>Check out my YouTube Portfolio on YT Jobs, where I show off my Thumbnails, Editing, and channel managing skill.</p>
+                <a href="https://ytjobs.co/talent/profile/384407?r=686" class="link-item" style="margin-top: 1rem; display: inline-block;">
+                    🔗 View Profile
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="window" id="software-window">
+        <div class="window-header">
+            <div class="window-title">Software I Use</div>
+            <div class="window-controls">
+                <div class="window-control minimize">_</div>
+                <div class="window-control maximize">□</div>
+                <div class="window-control close" onclick="closeWindow('software')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>My Software Stack 💻</h2>
+            <ul class="spec-list">
+                <li><span class="spec-label">Video Editing</span><span class="spec-value">Adobe Premiere Pro 2024</span></li>
+                <li><span class="spec-label">Photo Editing</span><span class="spec-value">Adobe Photoshop 2025</span></li>
+                <li><span class="spec-label">Audio</span><span class="spec-value">Audacity</span></li>
+                <li><span class="spec-label">Streaming</span><span class="spec-value">OBS Studio</span></li>
+                <li><span class="spec-label">Browser</span><span class="spec-value">Firefox</span></li>
+                <li><span class="spec-label">OS</span><span class="spec-value">Debian Linux</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="window" id="hardware-window">
+        <div class="window-header">
+            <div class="window-title">My Hardware Setup</div>
+            <div class="window-controls">
+                <div class="window-control minimize">_</div>
+                <div class="window-control maximize">□</div>
+                <div class="window-control close" onclick="closeWindow('hardware')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>My Setup 🖥️</h2>
+            <ul class="spec-list">
+                <li><span class="spec-label">CPU</span><span class="spec-value">Intel Core i7 10610U</span></li>
+                <li><span class="spec-label">RAM</span><span class="spec-value">16GB DDR4 2667 MT/s</span></li>
+                <li><span class="spec-label">Storage</span><span class="spec-value">256GB SATA SSD</span></li>
+                <li><span class="spec-label">Secondary Device</span><span class="spec-value">2024 iPad Pro M4 (16GB/1TB)</span></li>
+                <li><span class="spec-label">Phone</span><span class="spec-value">iPhone 16 256GB</span></li>
+                <li><span class="spec-label">Microphone</span><span class="spec-value">Razer Seiren V3 Mini</span></li>
+                <li><span class="spec-label">Keyboard</span><span class="spec-value">Razer Blackwidow Ultimate 2016</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="window" id="contact-window">
+        <div class="window-header">
+            <div class="window-title">Contact Me</div>
+            <div class="window-controls">
+                <div class="window-control minimize">_</div>
+                <div class="window-control maximize">□</div>
+                <div class="window-control close" onclick="closeWindow('contact')">×</div>
+            </div>
+        </div>
+        <div class="window-content">
+            <h2>Get In Touch 📧</h2>
+            <p>Want to collaborate, have a question, or just want to say hi? I'd love to hear from you!</p>
+            <div class="links-grid">
+                <a href="mailto:dogeminerdirectory@gmail.com" class="link-item">
+                    📧 Email Me
+                </a>
+                <a href="https://twitter.com/Babylion122" class="link-item">
+                    💬 DM on Twitter
+                </a>
+            </div>
+            <p style="margin-top: 1rem;">For business inquiries, please use email. For quick questions, Twitter DMs work great!</p>
+        </div>
+    </div>
+
+    <script>
+        let draggedWindow = null;
+        let offset = { x: 0, y: 0 };
+        let zIndex = 100;
+
+        function openWindow(windowType) {
+            const window = document.getElementById(windowType + '-window');
+            window.style.display = 'block';
+            window.style.zIndex = ++zIndex;
+            
+            // Better window positioning for desktop
+            if (window.innerWidth > 768) {
+                // Desktop positioning
+                const windowWidth = 500;
+                const windowHeight = 400;
+                const centerX = (window.innerWidth - windowWidth) / 2;
+                const centerY = (window.innerHeight - windowHeight) / 2;
+                
+                window.style.left = Math.max(50, centerX) + 'px';
+                window.style.top = Math.max(50, centerY) + 'px';
+                window.style.width = windowWidth + 'px';
+                window.style.height = 'auto';
+            } else {
+                // Mobile positioning (existing logic)
+                window.style.width = '90vw';
+                window.style.left = '5vw';
+                window.style.top = '5vh';
+            }
+        }
+
+        function closeWindow(windowType) {
+            document.getElementById(windowType + '-window').style.display = 'none';
+        }
+
+        // Make windows draggable
+        document.addEventListener('mousedown', (e) => {
+            if (e.target.classList.contains('window-header') || e.target.classList.contains('window-title')) {
+                draggedWindow = e.target.closest('.window');
+                draggedWindow.style.zIndex = ++zIndex;
+                
+                const rect = draggedWindow.getBoundingClientRect();
+                offset.x = e.clientX - rect.left;
+                offset.y = e.clientY - rect.top;
+                
+                e.preventDefault();
+            }
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (draggedWindow) {
+                const x = Math.max(0, Math.min(window.innerWidth - draggedWindow.offsetWidth, e.clientX - offset.x));
+                const y = Math.max(0, Math.min(window.innerHeight - draggedWindow.offsetHeight, e.clientY - offset.y));
+                
+                draggedWindow.style.left = x + 'px';
+                draggedWindow.style.top = y + 'px';
+            }
+        });
+
+        document.addEventListener('mouseup', () => {
+            draggedWindow = null;
+        });
+
+        // Window control functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('minimize')) {
+                // Minimize effect (just hide for now)
+                e.target.closest('.window').style.display = 'none';
+            }
+            
+            if (e.target.classList.contains('maximize')) {
+                const window = e.target.closest('.window');
+                if (window.style.width === '90vw') {
+                    // Restore
+                    window.style.width = '500px';
+                    window.style.height = 'auto';
+                    window.style.left = '50px';
+                    window.style.top = '50px';
+                } else {
+                    // Maximize
+                    window.style.width = '90vw';
+                    window.style.height = '90vh';
+                    window.style.left = '5vw';
+                    window.style.top = '5vh';
+                }
+            }
+        });
+
+        // Click to focus windows
+        document.addEventListener('click', (e) => {
+            const window = e.target.closest('.window');
+            if (window) {
+                window.style.zIndex = ++zIndex;
+            }
+        });
+
+        // Audio Player Functionality
+        const audio = document.getElementById('audioPlayer');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const progressFill = document.getElementById('progressFill');
+        const progressBar = document.querySelector('.progress-bar');
+        const currentTimeSpan = document.getElementById('currentTime');
+        const totalTimeSpan = document.getElementById('totalTime');
+
+        let isPlaying = false;
+
+        // Play/Pause functionality
+        playPauseBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                audio.pause();
+                playPauseBtn.textContent = '▶️';
+                isPlaying = false;
+            } else {
+                audio.play();
+                playPauseBtn.textContent = '⏸️';
+                isPlaying = true;
+            }
+        });
+
+        // Update progress bar and time
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = progress + '%';
+                
+                currentTimeSpan.textContent = formatTime(audio.currentTime);
+            }
+        });
+
+        // Set total time when metadata is loaded
+        audio.addEventListener('loadedmetadata', () => {
+            totalTimeSpan.textContent = formatTime(audio.duration);
+        });
+
+        // Click to seek
+        progressBar.addEventListener('click', (e) => {
+            const rect = progressBar.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const width = rect.width;
+            const percentage = clickX / width;
+            
+            if (audio.duration) {
+                audio.currentTime = percentage * audio.duration;
+            }
+        });
+
+        // Format time helper function
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        // Handle audio end
+        audio.addEventListener('ended', () => {
+            playPauseBtn.textContent = '▶️';
+            isPlaying = false;
+            progressFill.style.width = '0%';
+        });
+    </script>
+</body>
+</html>
